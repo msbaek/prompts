@@ -77,6 +77,7 @@
       `<fake-repository-rule>` 를 참고해서 test fake(Jpa Interface를 준수하는 최소한의 구현만 갖는 in memory repository)를 주입 받도록 해줘'
     - Walking Skeleton Test를 성공시킬 때는 최대한 Fake it을 적용해서 구현해줘
         - CreateShoppingBasket를 구현할 때는 Repository를 사용하지만, 계산이 필요한 부분은 최대한 계산을 하지 말고 테스트가 성공만 하도록 하드코딩해서 테스트를 성공시켜줘
+        - CreateShoppingBasket를 `@Transacttional`로 선언해줘. GET 메소드처럼 read-Only 메소드는 `@Transactional(readOnly = true)`로 선언해줘
         - 데이터를 저장하거나 읽는 것은 Repository를 이용해줘
         - domain model에 최대한 어떤 기능도 추가하지 말고 최대한 fake it을 적용해서 테스트를 성공시켜줘
         - fake repository는 test class와 같은 파일에 작성해줘

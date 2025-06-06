@@ -1,11 +1,14 @@
 # prompts
 
+- 이 프롬프트는 부족한 부분들이 너무 많습니다. 이 프롬프트를 사용해 보시면서 제안할 개선 사항이 있다면 pull request를 보내주시거나, codetemplate@hanmail.net 으로 의견을 주시면 최대한 반영하도록 하겠습니다.
+- 많이 부족함에도 공유를 결정한 것은 공유를 통해 개선될 것이라는 생각이 있어서 입니다. 부족함을 이해해 주시고, 많은 도움 부탁드립니다.
+
+## 작성한 방법
+
 - prompt를 만들고,
 - prompt에서 언급되는 규칙들을 tdd-rules.md에 정의
 - prompt에서 언급되는 예제들을 tdd-samples.md에 정의
-- 지금은 bowling, shoppingBasket, wordWrap 등의 규칙, 예제가 있지만 더 많은
-  규칙, 예제를 추가하면 더 정확해 질 것으로 예상됨(마치 zero shot 보다 few
-  shot이 정확하고, CoT(Chain of Thought)가 더 정확하고 효율적인 것 처럼)
+- 지금은 bowling, shoppingBasket, wordWrap 등의 규칙, 예제가 있지만 더 많은 규칙, 예제를 추가하면 더 정확해 질 것으로 예상됨(마치 zero shot 보다 few shot이 정확하고, CoT(Chain of Thought)가 더 정확하고 효율적인 것 처럼)
 - TDD 프롬프트, 규칙, 예제들은 현재 리팩터링을 최소화하도록 구성하였음
 - 이후 리팩터링에 대한 프롬프트도 추가할 예정임
 

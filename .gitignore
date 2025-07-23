@@ -2,3 +2,5 @@
 .idea
 /tdd/.claude/settings.local.json
 ignored/**
+claude/commands/tdd
+tdd@ ⇒ 

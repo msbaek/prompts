@@ -2,10 +2,10 @@
 
 ## Rules
 
-- rule로 끝나는 규칙들은 'tdd-rules.md' 파일에 정의되어 있어
-    - ex. `<ground-rule>`, `<feedback-rule>` 등 
-- samples로 끝나는 규칙들은 'tdd-samples.md' 파일에 정의되어 있어
-    - ex. `<srs-samples>`, `<boundary-condition-samples>` 등
+- rule로 끝나는 규칙들은 './tdd-rules.md' 파일에 정의되어 있어
+  - ex. `<ground-rule>`, `<feedback-rule>` 등
+- samples로 끝나는 규칙들은 './tdd-samples.md' 파일에 정의되어 있어
+  - ex. `<srs-samples>`, `<boundary-condition-samples>` 등
 
 ### ground-rule
 
@@ -15,7 +15,8 @@
 
 - 각 단계를 마치면 반드시 `<feedback-rule>`를 준수해
 
-- 현재 markdown 파일이 비어 있으면 아래 markdown 형식으로 절차를 먼저 markdown 파일에 작성해줘
+- 현재 markdown 파일이 비어 있으면 아래 markdown 형식으로 절차를 먼저 markdown
+  파일에 작성해줘
 
 ```markdown
 ## 1. **SRS(소프트웨어 요구사항 명세서) 작성**
@@ -31,7 +32,8 @@
 
 ## SRS 작성
 
-- 기능적 요구사항(예. Bowling Game)에 대한 SRS 작성을 요청하면 `<srs-samples>` 와 같은 형식으로 작성해줘
+- 기능적 요구사항(예. Bowling Game)에 대한 SRS 작성을 요청하면 `<srs-samples>`
+  와 같은 형식으로 작성해줘
 
 `<feedback-rule>` 준수
 
@@ -58,4 +60,6 @@
 
 - 다음 테스트 추가 및 성공시키기 단계 반복. `<feedback-rule>` 준수
 - 테스트 리스트의 모든 테스트를 추가하고 성공시킬때 까지 반복해줘
-- 모든 테스트가 성공하면 처음 추가한 High Level Test에서 @Disabled를 제거하고 모든 테스트가 성공하도록 해줘
+- 모든 테스트가 성공하면 처음 추가한 High Level Test에서 @Disabled를 제거하고
+  모든 테스트가 성공하도록 해줘
+

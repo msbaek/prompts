@@ -4,3 +4,4 @@
 ignored/**
 claude/commands/tdd
 tdd@ ⇒ 
+claude/commands/sc

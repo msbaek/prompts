@@ -1,25 +1,73 @@
-당신은 숙련된 소프트웨어 개발자입니다. 다음 변경사항에 대해 conventional commits
-스타일의 multiline git commit message를 작성해주세요.
+---
+argument-hint: "[--type feat|fix|docs|style|refactor|test|chore] [--scope 범위] [--lang en|ko]"
+description: "Conventional Commits 스타일의 멀티라인 커밋 메시지 생성"
+---
+
+# Git 커밋 메시지 생성 - $ARGUMENTS
+
+현재 변경사항을 분석하여 Conventional Commits 스타일의 멀티라인 커밋 메시지를 생성합니다.
 
 ## 커밋 메시지 작성 규칙
 
-1. **첫 번째 줄**: 50자 이내의 간결한 요약 (type(scope): subject 형식)
+### 1. 첫 번째 줄 (제목)
+- **형식**: `type(scope): subject`
+- **길이**: 50자 이내
+- **언어**: 이해하기 쉬운 영어 (--lang 옵션으로 변경 가능)
+- **특징**: 동사원형으로 시작, 첫 글자 소문자
 
-   - type: feat, fix, docs, style, refactor, test, chore 등
-   - scope: 변경된 모듈/컴포넌트 (선택사항)
-   - subject: 동사원형으로 시작, 첫 글자 소문자
-   - 이해하기 쉬운 영어로 작성
+### 2. 두 번째 줄
+- 빈 줄 (제목과 본문 구분)
 
-2. **두 번째 줄**: 빈 줄
+### 3. 본문
+- **줄바꿈**: 72자
+- **내용**: 무엇을, 왜 변경했는지 설명
+- **초점**: 비즈니스 맥락과 이유 (구현 세부사항보다)
+- **언어**: 간결한 한글 (기본값, --lang 옵션으로 변경 가능)
 
-3. **본문**: 72자로 줄바꿈하여 작성
-   - 무엇을, 왜 변경했는지 설명
-   - 어떻게 구현했는지보다는 비즈니스 맥락과 이유에 집중
-   - 간결한 한글로 작성
+## 옵션 설명
 
-## 예시
+- `--type`: 커밋 타입 직접 지정
+- `--scope`: 변경 범위 직접 지정
+- `--lang`: 본문 언어 선택 (en: 영어, ko: 한글)
 
-```commit-message-example
+## 커밋 타입
+
+| 타입 | 설명 | 사용 시점 |
+|------|------|-----------|
+| `feat` | 새로운 기능 추가 | 사용자가 체감할 수 있는 새 기능 |
+| `fix` | 버그 수정 | 기존 기능의 오류 해결 |
+| `docs` | 문서 수정 | README, 주석, 문서화 |
+| `style` | 코드 스타일 | 포맷팅, 세미콜론 등 (동작 무관) |
+| `refactor` | 코드 리팩토링 | 기능 변경 없이 구조 개선 |
+| `test` | 테스트 | 테스트 추가 또는 수정 |
+| `chore` | 기타 작업 | 빌드, 패키지 매니저, 설정 등 |
+
+## 사용 예시
+
+### 기본 사용 (타입 자동 추론)
+```
+/commit-message
+```
+
+### 타입 지정
+```
+/commit-message --type feat
+```
+
+### 타입과 범위 지정
+```
+/commit-message --type fix --scope auth
+```
+
+### 영어 본문으로 작성
+```
+/commit-message --lang en
+```
+
+## 생성 예시
+
+### Feature 추가
+```
 feat(order): add bulk order processing for k-pop merchandise
 
 - 한정판 출시 시 대량 주문을 처리할 수 있는 일괄 처리 기능 구현. 이렇게 하면
@@ -27,3 +75,36 @@ feat(order): add bulk order processing for k-pop merchandise
 - 배치 크기를 구성할 수 있는 OrderBatchProcessor 추가. 이벤트 중심 아키텍처로
   비동기 처리 구현 배치 작업 실패에 대한 모니터링 및 알림 추가
 ```
+
+### Bug 수정
+```
+fix(payment): resolve duplicate charge issue in retry logic
+
+- 결제 재시도 로직에서 중복 과금이 발생하는 문제 해결. 트랜잭션 ID를 사용한
+  멱등성 검증 추가로 동일한 결제가 여러 번 처리되는 것을 방지
+- 재시도 전 기존 결제 상태를 확인하는 로직 추가. 이미 성공한 결제는 재시도
+  하지 않도록 개선
+```
+
+### 문서 업데이트
+```
+docs(api): update authentication flow documentation
+
+- OAuth 2.0 플로우 변경사항을 반영하여 API 문서 업데이트. 새로운 리프레시
+  토큰 처리 방식과 에러 응답 형식 추가
+- 실제 구현과 일치하도록 예제 코드 수정. 개발자들이 쉽게 이해할 수 있도록
+  시퀀스 다이어그램 추가
+```
+
+## 작성 팁
+
+1. **제목은 명령조로**: "Added" ❌ → "Add" ✅
+2. **본문은 "왜"에 집중**: 코드를 보면 "어떻게"는 알 수 있음
+3. **비즈니스 가치 강조**: 기술적 세부사항보다 영향과 이유
+4. **구체적으로 작성**: "여러 버그 수정" ❌ → "결제 중복 처리 버그 수정" ✅
+
+## 주의사항
+
+- 한 커밋에는 한 가지 목적만 포함
+- 제목만으로도 변경사항을 이해할 수 있어야 함
+- 본문은 미래의 자신과 동료를 위한 설명

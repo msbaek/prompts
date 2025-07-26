@@ -1,29 +1,38 @@
-# 주간 소셜 미디어 포스트 생성
+---
+argument-hint: "[--complete] [--days 숫자] [--filter 키워드] [--tag 태그명]"
+description: "Things 메모를 수집하여 소셜 미디어 포스트로 변환하고 Obsidian에 저장"
+---
+
+# 주간 소셜 미디어 포스트 생성 $ARGUMENTS
 
 Things에서 최근 메모들을 수집하여 주제별로 분류하고, 소셜 미디어에 올릴 수 있는
 포스트로 변환합니다.
 
-`--complete`, `--days [숫자]`, `--tag [태그명]`
-
 ## 작업 프로세스
 
-1. **Things 메모 수집**
+1. **옵션 파싱**
+   - $ARGUMENTS에서 플래그와 값 추출
+   - 기본값 설정: days=7, complete=false
+   - 옵션 검증 및 에러 처리
 
+2. **Things 메모 수집**
    - Things MCP를 사용하여 today와 inbox에서 메모 가져오기
-   - 최근 1주일 이내의 메모 필터링
+   - `--days` 옵션에 따른 기간 필터링 (기본: 7일)
+   - `--filter` 키워드가 있으면 내용 필터링
+   - `--tag` 옵션이 있으면 특정 태그 필터링
 
-2. **주제별 분류**
+3. **주제별 분류**
 
    - TDD, 클린코드, AI 개발, 아키텍처 등 주요 개발 주제별로 자동 분류
    - 관련된 메모들을 그룹핑하여 통합된 인사이트 도출
 
-3. **소셜 미디어 포스트 생성**
+4. **소셜 미디어 포스트 생성**
 
    - LinkedIn용 긴 포스트 (인사이트 + 배경 설명)
    - Twitter용 짧은 포스트 (핵심 메시지)
    - 적절한 해시태그 자동 추가
 
-4. **옵시디안 문서 저장**
+5. **옵시디안 문서 저장**
 
    - `001-INBOX/social-media-posts/` 디렉토리에 날짜별로 저장
    - 계층적 태그 자동 부여:
@@ -34,13 +43,15 @@ Things에서 최근 메모들을 수집하여 주제별로 분류하고, 소셜 
      - `development/ai`
      - `development/architecture`
 
-5. **Things 연동**
+6. **Things 연동**
 
    - 각 메모 항목에 대한 Things URL 링크 추가
    - 사용된 항목 완료 처리 옵션 제공
 
-6. 메모들을 완료 처리
-   - Things App을 MCP로 연결 가능한 경우 글 작성에 사용된 메모들을 완료 처리
+7. **메모 완료 처리**
+   - `--complete` 옵션이 있을 때만 실행
+   - Things MCP를 통해 사용된 메모들을 완료 처리
+   - 처리 결과 보고
 
 ## 자동화 기능
 
@@ -51,8 +62,29 @@ Things에서 최근 메모들을 수집하여 주제별로 분류하고, 소셜 
 
 ## 사용 예시
 
+### 기본 사용
 ```
-/weekly-social-posts
+/obsidian:weekly-social-posts
+```
+
+### 완료 처리 포함
+```
+/obsidian:weekly-social-posts --complete
+```
+
+### 특정 기간 설정
+```
+/obsidian:weekly-social-posts --days 14
+```
+
+### 특정 태그로 필터링
+```
+/obsidian:weekly-social-posts --tag tdd
+```
+
+### 복합 옵션 사용
+```
+/obsidian:weekly-social-posts --days 10 --filter "refactoring" --complete
 ```
 
 이 명령을 실행하면:

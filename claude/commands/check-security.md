@@ -1,3 +1,171 @@
-Please check through all the code you just wrote and make sure it follows
-security best practices. Make sure no sensitive information is in the front end
-and there are no vulnerabilities people can exploit
+---
+argument-hint: "[파일/디렉토리] [--fix] [--severity high|medium|low] [--report]"
+description: "코드의 보안 취약점을 검사하고 개선 사항 제안"
+---
+
+# 보안 검사 - $ARGUMENTS
+
+작성한 코드의 보안 취약점을 검사하고 모범 사례를 따르는지 확인합니다.
+
+$ARGUMENTS가 제공되지 않은 경우, 최근 변경된 파일들을 대상으로 검사합니다.
+
+## 작업 프로세스
+
+1. **검사 대상 결정**
+   - $ARGUMENTS로 지정된 파일/디렉토리
+   - 미지정 시 최근 변경 파일 자동 탐지
+   - 보안 관련 파일 우선 검사
+
+2. **보안 취약점 스캔**
+   - 민감 정보 노출 검사
+   - 인증/인가 취약점
+   - 입력 검증 부재
+   - 안전하지 않은 데이터 처리
+
+3. **모범 사례 검증**
+   - OWASP 가이드라인 준수
+   - 프레임워크별 보안 권장사항
+   - 암호화 및 해싱 방식
+
+4. **결과 보고**
+   - 취약점 수준별 분류
+   - 구체적인 위치 지정
+   - 수정 방안 제시
+
+## 옵션 설명
+
+- `--fix`: 자동으로 수정 가능한 문제 해결
+- `--severity`: 특정 심각도 이상만 표시
+  - `high`: 중대한 보안 위험
+  - `medium`: 잠재적 위험
+  - `low`: 개선 권장사항
+- `--report`: 상세 보고서 생성
+
+## 검사 항목
+
+### 1. 민감 정보 노출
+- **하드코딩된 시크릿**
+  - API 키, 비밀번호, 토큰
+  - 데이터베이스 연결 문자열
+  - 암호화 키
+- **로깅 취약점**
+  - 민감 데이터 로깅
+  - 스택 트레이스 노출
+- **에러 메시지**
+  - 시스템 정보 노출
+  - 디버그 정보 유출
+
+### 2. 인증 및 인가
+- **세션 관리**
+  - 세션 고정 공격
+  - 세션 타임아웃 미설정
+- **접근 제어**
+  - 권한 검증 누락
+  - 불충분한 인증
+- **비밀번호 정책**
+  - 약한 비밀번호 허용
+  - 평문 저장
+
+### 3. 입력 검증
+- **인젝션 공격**
+  - SQL 인젝션
+  - XSS (Cross-Site Scripting)
+  - 명령어 인젝션
+- **경로 조작**
+  - 디렉토리 트래버설
+  - 파일 업로드 취약점
+
+### 4. 데이터 보호
+- **암호화**
+  - 약한 암호화 알고리즘
+  - 적절하지 않은 키 관리
+- **전송 보안**
+  - HTTP 사용 (HTTPS 미사용)
+  - 안전하지 않은 쿠키
+
+### 5. 구성 보안
+- **기본 설정**
+  - 디버그 모드 활성화
+  - 불필요한 서비스 노출
+- **CORS 설정**
+  - 과도하게 허용적인 정책
+- **보안 헤더**
+  - 누락된 보안 헤더
+
+## 사용 예시
+
+### 전체 프로젝트 검사
+```
+/check-security
+```
+
+### 특정 파일 검사
+```
+/check-security src/auth/login.js
+```
+
+### 디렉토리 검사 및 자동 수정
+```
+/check-security src/ --fix
+```
+
+### 고위험 취약점만 표시
+```
+/check-security --severity high
+```
+
+### 상세 보고서 생성
+```
+/check-security --report
+```
+
+## 출력 형식
+
+```
+🔒 보안 검사 결과
+
+검사 파일: 15개
+발견된 문제: 8개 (High: 2, Medium: 4, Low: 2)
+
+🚨 HIGH: 하드코딩된 API 키
+📍 위치: src/config.js:12
+```javascript
+const API_KEY = "sk-1234567890abcdef"; // 취약점
+```
+✅ 수정 방안: 환경 변수 사용
+```javascript
+const API_KEY = process.env.API_KEY;
+```
+
+⚠️ MEDIUM: SQL 인젝션 취약점
+📍 위치: src/database/queries.js:45
+```javascript
+const query = `SELECT * FROM users WHERE id = ${userId}`; // 취약점
+```
+✅ 수정 방안: 파라미터화된 쿼리 사용
+```javascript
+const query = 'SELECT * FROM users WHERE id = ?';
+db.query(query, [userId]);
+```
+
+[추가 취약점들...]
+
+📊 요약
+- 즉시 수정 필요: 2개
+- 수정 권장: 4개
+- 개선 제안: 2개
+```
+
+## 자동 수정 가능 항목
+
+- 환경 변수로 이동 가능한 하드코딩된 값
+- 보안 헤더 추가
+- HTTPS 리다이렉션 설정
+- 안전한 쿠키 플래그 설정
+
+## 주의사항
+
+- 자동 수정 후 반드시 테스트 필요
+- 일부 수정은 수동 검토 필요
+- 프레임워크별 특수 사항 고려
+- 백업 후 수정 권장

@@ -1,7 +1,5 @@
 .DS_Store
 .idea
-/tdd/.claude/settings.local.json
 ignored/**
-claude/commands/tdd
-tdd@ ⇒ 
 claude/commands/sc
+.claude

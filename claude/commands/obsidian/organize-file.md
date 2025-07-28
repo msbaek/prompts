@@ -27,11 +27,21 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
    - 기존 태그가 있다면 검토하고 개선
    - 모든 태그는 `#` 접두사로 시작
    - `--preserve-tags` 옵션 사용 시 기존 태그 유지
+   - **태그 설계 원칙**:
+     - 디렉토리 기반 태그(#resources/, #slipbox/) 사용 금지
+     - 개념 중심 태그 사용 (#git/features/worktree)
+     - development/ prefix 제거 (대부분 개발 관련이므로 불필요)
+     - 5가지 카테고리 기준 적용:
+       - Topic (주제): #git, #architecture, #testing 등
+       - Document Type (문서 유형): #guide, #tutorial, #reference 등
+       - Source (출처): #book, #article, #video 등
+       - Status (상태): #draft, #review, #complete 등
+       - Project (프로젝트): #project-name 등
    - 예시:
-     - `#git/features/worktree`
-     - `#development/productivity/tool-name`
-     - `#architecture/patterns/pattern-name`
-     - `#AI/tools/tool-name`
+     - `#git/features/worktree` (Topic)
+     - `#patterns/singleton` (development/ 제거)
+     - `#architecture/microservices` (개념 중심)
+     - `#AI/tools/claude` (도구별 구분)
 
 4. **적절한 디렉토리 결정**
    - vault의 폴더 구조 분석
@@ -84,6 +94,13 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
 
 ```
 ✅ 파일 분석 완료: git-worktree.md
-📋 부여된 태그: #git/features/worktree
+📋 부여된 태그: #git/features/worktree #guide #complete
 📁 이동: 001-INBOX/ → 003-RESOURCES/TOOLS/
 ```
+
+## 특수 케이스 처리
+
+- **Canvas 파일(.canvas)**: 태그 부여 대상에서 제외
+- **이미지 파일**: 태그 부여 대상에서 제외
+- **읽기 오류 파일**: UNPROCESSED-FILES.md에 기록
+- **중복 파일 ("사본" 포함)**: 별도 확인 및 처리

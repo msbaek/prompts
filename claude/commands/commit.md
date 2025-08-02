@@ -18,7 +18,7 @@ description: "make-commit-message.md 규칙에 따라 자동으로 커밋 메시
 
 2. **커밋 메시지 생성**
 
-   - commit-message.md의 규칙에 따라 메시지 작성
+   - './make-commit-message.md' 의 규칙에 따라 메시지 작성
    - Conventional Commits 형식 준수
    - 타입, 범위, 제목, 본문 자동 생성
 
@@ -132,4 +132,3 @@ feat(claude): add dynamic argument support to slash commands
 - 스테이징된 파일이 없으면 에러 발생
 - 커밋 메시지는 자동 생성되지만 검토 후 수정 가능
 - `--push` 옵션 사용 시 원격 브랜치 설정 확인 필요
-

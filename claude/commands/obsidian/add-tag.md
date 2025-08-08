@@ -39,11 +39,13 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
      - `patterns/singleton` (development/ 제거)
      - `architecture/microservices` (개념 중심)
      - `AI/tools/claude` (도구별 구분)
-4. 'tagging-example.md' 파일에서 실제 문서에 대해서 태그를 부여하는 예시 참고
+4. '~/.claude/commands/obsidian/tagging-example.md' 파일에서 실제 문서에 대해서 태그를 부여하는 예시 참고
 5. **태그 적용**
    - `--dry-run` 옵션 사용 시 변경사항만 표시
    - YAML front matter에 태그 추가/수정
    - 본문 내 인라인 태그도 함께 관리
+6. author
+   - author는 "Ian Cooper"의 경우 "ian-cooper" 형식으로 변환해줘
 
 ## 옵션 설명
 

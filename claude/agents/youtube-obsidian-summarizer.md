@@ -20,16 +20,16 @@ Begin every document with:
 ```markdown
 ---
 id: [영상 제목]
-created: [YYYY-MM-DD]
+created_at: [[YYYY-MM-DD HH:mm]]
 source: [YouTube URL]
-creator: [채널명/발표자]
+author: [발표자]
 tags: [hierarchical tags]
 ---
 ```
 
 ### 2. Hierarchical Tag System
 
-~/.claude/commands/obsidian/add-tag.md 에 정의된 규칙을 적용해서 태그 부여
+- tags, author 는~/.claude/commands/obsidian/add-tag.md 에 정의된 규칙을 적용
 
 ### 3. Content Organization
 

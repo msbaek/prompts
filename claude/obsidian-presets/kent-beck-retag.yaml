@@ -1,0 +1,34 @@
+# Preset for Kent Beck articles retagging
+name: "Kent Beck Articles Retag"
+task: retag
+source_pattern: "003-RESOURCES/Tidying/*.md"
+agents: 4
+
+options:
+  max_tags: 6
+  min_tags: 3
+  
+  # Always include these tags for Kent Beck content
+  always_include:
+    - "kent-beck"
+  
+  # Exclude these prefixes
+  exclude_prefixes:
+    - "development/"
+    - "resources/"
+    - "slipbox/"
+  
+  # Priority topics for Kent Beck content
+  priority_topics:
+    - tdd
+    - refactoring
+    - software-design
+    - empirical-software-design
+    - tidy-first
+    - xp
+    - agile
+  
+  # Author mapping
+  author_mappings:
+    "Kent Beck": "kent-beck"
+    "Kent": "kent-beck"

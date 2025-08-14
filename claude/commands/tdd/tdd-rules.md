@@ -23,16 +23,16 @@
     - 단순히 한 두개의 값만 비교하면 되는 경우(bowling game의 score, 계산기의 연산 결과 등)처럼 approvals test를 적용하기엔 검증이 너무 단순한 경우는 assertj의
       assertThat() 사용해서 검증해줘
     - 네가 판단하기 어려우면 assert를 작성하기 전에 내게 물어봐줘
-    - 'general-tdd-rules.md의 <approved-text-samples> 섹션' 준수
+    - '~/.claude/commands/tdd/tdd-samples.md의 <approved-text-samples> 섹션' 준수
 - Class 파일에 코드를 추가할 때는 중요한 public method가 먼저 나오고, private 메소드가 가장 나중에 나오게 해줘.
-- 코드나 파일을 읽고 쓰기 위해 intellij 툴을 사용할 때는 'general-tdd-rules.md의 <feedback-rule> 섹션'을 준수해줘
+- 코드나 파일을 읽고 쓰기 위해 intellij 툴을 사용할 때는 '<feedback-rule> 섹션'을 준수해줘
 - 마크다운 문서를 확인하고 "## 전체적인 절차"의 각 단계가 없으면 절차를 먼저 마크다운 문서에 작성하고 그 절차에 맞게 진행하자. 그리고 마크다운 문서는 한글로
   작성해줘.
 - "## 전체적인 절차"의 각 단계를 마치면
     - 관련된 markdown 파일에 현재 진행 내역을 작업 절차의 각 단계 중 적합한 절차 영역에 작성해줘
     - 이때 최대한 기존에 작성된 내용을 변경하지 말고, append only로 갱신해줘
-- 코드를 추가할 때는 반드시 'general-tdd-rules.md의 <tdd-rule> 섹션'을 준수해줘
-- 대화(새로운 chat)를 시작할 때는 'general-tdd-rules.md의 <session-start-rule> 섹션' 규칙을 준수해줘
+- 코드를 추가할 때는 반드시 '<tdd-rule> 섹션'을 준수해줘
+- 대화(새로운 chat)를 시작할 때는 '<session-start-rule> 섹션' 규칙을 준수해줘
 ```
 
 </ground-rule>
@@ -75,10 +75,10 @@
 <tdd-rule>
 
 ```markdown
-- 'general-tdd-rules.md의 <three-laws-of-tdd-rule> 섹션' 준수
+- '<three-laws-of-tdd-rule> 섹션' 준수
 - don't write code without a failing test.
 - only write the code necessary to get the test to pass(little gold game).
-    - 'general-tdd-rules.md의 <make-it-work-rule> 섹션' 준수
+    - '<make-it-work-rule> 섹션' 준수
 - never delete tests without express permission.
 - 테스트를 추가할 때는 반드시 한번에 하나씩 추가해. 실패하는 테스트가 있을 때는 절대 새로운 테스트를 추가할 수 없어.
 ```
@@ -119,11 +119,11 @@
 
 ```markdown
 - 새로운 테스트를 추가하고 코드를 구현할 때는 다음과 같은 절차를 따라줘.
-    - 'general-tdd-rules.md의 <tdd-rule>' 준수
+    - '<tdd-rule>' 준수
     - **실패하는 테스트** 추가
         - '<test-desiderta-rule>' 준수
-    - 최소한의 코드로 테스트가 성공하도록 구현을 추가(little golf game, 'general-tdd-rules.md의 <make-it-work-rule>' 준수)
-        - 이때는 'general-tdd-rules.md의 <tpp-rule>' 준수
+    - 최소한의 코드로 테스트가 성공하도록 구현을 추가(little golf game, '<make-it-work-rule>' 준수)
+        - 이때는 '<tpp-rule>' 준수
         - 하나의 테스트가 성공하면 javadoc comment에 있는 테스트 항목에 완료 표시('X')를 해줘
     - 작업한 내역을 마크다운 파일에 반영
         - 각각의 테스트에 대한 작업 내역을 '### n.x' 레벨로 추가
@@ -160,7 +160,7 @@
       끝까지 풀어봐야 한다.
 - 분명한 구현 방법이 있다면 바로 적용
 - 빠르게 해결할 수 없다면 fake it. 그리고 테스트가 거짓말을 하지 못하도록 triangulate
-- 코드를 작성할 때는 최대한 'general-tdd-rules.md의 <tpp-rule>'을 준수
+- 코드를 작성할 때는 최대한 '<tpp-rule>'을 준수
 
 </make-it-work-rule>
 
@@ -239,7 +239,7 @@
 
 SRS를 이해하기 위한 예제(usage, use case scenario 등)를 만들어서 보여줘
 
-주어진 요구사항에 대해서 해당 요구사항을 잘 설명할 수 있는 'tdd-examples.md의 <specification-example-samples> 섹션'과 같은 예제(usage, use case scenario
+주어진 요구사항에 대해서 해당 요구사항을 잘 설명할 수 있는 '~/.claude/commands/tdd/tdd-samples.md의 <specification-example-samples> 섹션'과 같은 예제(usage, use case scenario
 등)를 만들어서 보여줘
 
 경계조건을 잘 파악해서 예제를 만들어줘
@@ -254,6 +254,7 @@ SRS를 이해하기 위한 예제(usage, use case scenario 등)를 만들어서 
 <write-test-case-list-rule>
 
 - `<test-addition-rule>, <programmer-test-rule>`를 준수헤서 `<test-case-list-samples>`와 같은 테스트 케이스 목록을 작성해줘
+- `<external-behavior-test-case-list-samples>` 와 같은 예제를 참고해서 사용자에게 보여지는 external behavior를 검증하려면 어떤 경우를 검증하면 좋을지 고민하고 테스트 케이스를 점진적으로 추가해줘 
 - 비즈니스 규칙과 무관한 중복되는 테스트 케이스는 제거해줘
 - 동일한 비즈니스 규칙이 적용되는 테스트 케이스는 합치거나 제거해줘
 - 구현하려는 코드가 어떻게 동작해야 하는지 알고 있는 시나리오들을 나열하는 단계임
@@ -265,16 +266,16 @@ SRS를 이해하기 위한 예제(usage, use case scenario 등)를 만들어서 
 <write-javadoc-test-case-list-rule>
 
 ```markdown
-- 'general-tdd-rules.md의 <test-addition-rule>' 를 준수해서 다음 테스트를 추가해줘
+- '<test-addition-rule>' 를 준수해서 다음 테스트를 추가해줘
 - '@DisplayName' 을 이용해서 테스트 리스트에 있는 텍스트를 넣어주고, 텍스트 메소드 이름은 underscore를 이용해서 가독성이 높게 작성해줘
-- 테스트 클래스의 최상단에는 java23의 마크다운 형식 커멘트 기능을 이용해서 'general-tdd-rules.md의 <javadoc-test-case-list-samples>'와 같은 형식으로 앞에서 생성한
+- 테스트 클래스의 최상단에는 java23의 마크다운 형식 커멘트 기능을 이용해서 '<javadoc-test-case-list-samples>'와 같은 형식으로 앞에서 생성한
   테스트 목록을 넣어 줘
 
 - approvalstest를 이용해서 UI, DB 등을 고려해서 assert하도록 작성해
-- 이때 테스트 리스트에 있는 모든 테스트를 한번에 추가하고 성공시키지 말고, 하나의 테스트를 추가한 후에 'general-tdd-rules.md의 <feedback-rule>' 준수해
+- 이때 테스트 리스트에 있는 모든 테스트를 한번에 추가하고 성공시키지 말고, 하나의 테스트를 추가한 후에 '<feedback-rule>' 준수해
 - 테스트를 작성할 때는 언제나 approvalstest를 위한 `**approved.txt`를 함께
   작성해줘
-- 테스트를 성공시킬 때는 'general-tdd-rules.md의 <make-it-work-rule>' 규칙을 준수해서 최대한 단순하게, 꼭 필요한 적은 코드로 성공하도록 해줘
+- 테스트를 성공시킬 때는 '<make-it-work-rule>' 규칙을 준수해서 최대한 단순하게, 꼭 필요한 적은 코드로 성공하도록 해줘
 ```
 
 </write-javadoc-test-case-list-rule>
@@ -362,7 +363,7 @@ SRS를 이해하기 위한 예제(usage, use case scenario 등)를 만들어서 
 
 7. 테스트 품질 저하
     - 증상: 테스트가 불필요하게 복잡하거나, 취약하거나, 불완전함
-    - 대처: "'general-tdd-rules.md의 programmer-test' 기준에 따라 이 테스트의 품질을 평가해주세요."
+    - 대처: "'<programmer-test-rule>' 기준에 따라 이 테스트의 품질을 평가해주세요."
 ```
 
 </error-handling-rule>

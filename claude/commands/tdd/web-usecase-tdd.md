@@ -1,10 +1,12 @@
 # AI와 Pair로 Usecase를 TDD로 구현하기
 
+You are a senior software engineer who follows Kent Beck's Test-Driven Development (TDD) and Tidy First principles. Your purpose is to guide development following these methodologies precisely.
+
 ## Rules
 
-- rule로 끝나는 규칙들은 './tdd-rules.md' 파일에 정의되어 있어
+- rule로 끝나는 규칙들은 '~/.claude/commands/tdd/tdd-rules.md' 파일에 정의되어 있어
   - ex. `<ground-rule>`, `<feedback-rule>` 등
-- samples로 끝나는 규칙들은 './tdd-samples.md' 파일에 정의되어 있어
+- samples로 끝나는 규칙들은 '~/.claude/commands/tdd/tdd-samples.md' 파일에 정의되어 있어
   - ex. `<srs-samples>`, `<boundary-condition-samples>` 등
 
 ### ground-rule

@@ -26,7 +26,7 @@
 - timestamp와 같이 non-deterministic한 요소가 포함되면 항상 테스트가 실패해.
   이러한 non-deterministic한 요소는 사용하지 말아줘. 꼭 포함해야 한다면
   scrubbing해줘(test desiderata)
-- 'general-tdd-rules.md의 <test-desiderta-rule> 섹션' 준수
+- '~/.claude/commands/tdd/tdd-rules.md의 <test-desiderta-rule> 섹션' 준수
 
 </approved-text-samples>
 
@@ -236,3 +236,48 @@ void walking_skeleton_shopping_basket() throws Exception {
 ```
 
 </walking-skeleton-test-samples>
+
+## external-behavior-test-case-list-samples
+
+<external-behavior-test-case-list-samples>
+
+Kent Beck의 TDD 접근법에 따르면:
+    - 가장 간단한 케이스부터 시작
+    - 점진적으로 복잡성 증가
+    - 사용자 관점에서의 행동 검증
+하는 순서를 따라 테스트를 추가해줘 
+
+ex. 테니스 게임 External Behavior 테스트 케이스
+
+1단계: 기본 점수 시스템
+- 게임 시작: "0-0" (Love-Love)
+- 첫 번째 득점: "15-0" 또는 "0-15"
+- 두 번째 득점: "30-0", "15-15", "0-30"
+- 세 번째 득점: "40-0", "30-15", "15-30", "0-40"
+
+2단계: 게임 승리 조건
+- 40-0에서 한 점 더: "Player1 wins"
+- 40-15에서 한 점 더: "Player1 wins"
+- 40-30에서 한 점 더: "Player1 wins"
+
+3단계: Deuce 상황
+- 40-40: "Deuce"
+- Deuce에서 한 점: "Advantage Player1" 또는 "Advantage Player2"
+- Advantage에서 같은 선수가 득점: "Player1 wins"
+- Advantage에서 상대가 득점: "Deuce"로 복귀
+
+4단계: 엣지 케이스
+- 여러 번의 Deuce 반복
+- Advantage 상태에서의 연속 득점
+
+추천하는 테스트 순서
+- Kent Beck의 원칙에 따라 다음 순서로 진행
+
+newGame_ShowsLoveLove() - 가장 단순한 케이스
+playerOneScoresOnce_Shows15Love() - 첫 번째 변화
+bothPlayersScoreOnce_Shows15All() - 대칭성 확인
+playerOneWins_ShowsWinMessage() - 게임 종료 조건
+deuce_ShowsDeuce() - 특별한 규칙
+advantage_ShowsAdvantage() - Deuce 이후 상황
+
+</external-behavior-test-case-list-samples>

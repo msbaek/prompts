@@ -28,7 +28,7 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
      - 태그의 갯수는 최대 6개로 제한
    - **태그 설계 원칙**:
      - 디렉토리 기반 태그(resources/, slipbox/) 사용 금지
-     - 개념 중심 태그 사용 (git/features/worktree)
+     - 의미 중심 태그 사용 (git/features/worktree)
      - development/ prefix 제거 (대부분 개발 관련이므로 불필요)
      - 5가지 카테고리 기준 적용:
        - Topic (주제): git, architecture, tdd, refactoring, oop, ddd 등

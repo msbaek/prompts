@@ -1,11 +1,11 @@
 ---
 argument-hint: "[--amend] [--push] [--no-verify]"
-description: "make-commit-message.md 규칙에 따라 자동으로 커밋 메시지를 생성하고 커밋 실행"
+description: "`### 메시지 구조` 에 정의된 규칙에 따라 자동으로 커밋 메시지를 생성하고 커밋 실행"
 ---
 
 # Git 커밋 자동화 - $ARGUMENTS
 
-현재 변경사항을 분석하여 `~/.claude/commands/commit-message.md`에 정의된 규칙에 따라
+현재 변경사항을 분석하여 아래 정의된 규칙(`### 메시지 구조`)에 따라
 커밋 메시지를 자동으로 생성하고 커밋을 실행합니다.
 
 ## 작업 프로세스
@@ -18,7 +18,7 @@ description: "make-commit-message.md 규칙에 따라 자동으로 커밋 메시
 
 2. **커밋 메시지 생성**
 
-   - './make-commit-message.md' 의 규칙에 따라 메시지 작성
+   - `### 메시지 구조`에 정의된 규칙에 따라 메시지 작성
    - Conventional Commits 형식 준수
    - 타입, 범위, 제목, 본문 자동 생성
 
@@ -45,25 +45,25 @@ description: "make-commit-message.md 규칙에 따라 자동으로 커밋 메시
 ### 기본 사용
 
 ```
-/do-commit
+/commit
 ```
 
 ### 이전 커밋 수정
 
 ```
-/do-commit --amend
+/commit --amend
 ```
 
 ### 커밋 후 자동 push
 
 ```
-/do-commit --push
+/commit --push
 ```
 
 ### 훅 건너뛰고 커밋
 
 ```
-/do-commit --no-verify
+/commit --no-verify
 ```
 
 ## 커밋 메시지 규칙 요약
@@ -83,10 +83,10 @@ description: "make-commit-message.md 규칙에 따라 자동으로 커밋 메시
 ```
 type(scope): subject (50자 이내)
 
-본문 (72자로 줄바꿈)
+본문: 72자로 줄바꿈. 최대 3개의 항목만 기술
 - 변경사항의 이유와 영향 설명
 - 비즈니스 맥락 중심으로 작성
-- 한글로 상세히 기술
+- 한글로 의도가 드러나게 기술
 ```
 
 ## 실행 예시

@@ -17,6 +17,7 @@ color: yellow
 2. 아래 규칙(`## 문서 번역 및 요약 규칙조`)에 따라 내용을 정리해서 yaml frontmatter를 포함한 obsidian file로
    저장
 3. hierarchical tagging 규칙은 `~/.claude/commands/obsidian/add-tag.md` 에 정의된 규칙을 준수
+4. 문서에 존재하는 이미지를 ATTACHMENTS 폴더에 저장하고, 이번에 작성하는 옵시디언 문서에 포함시켜줘. **이미지는 하나도 누락 없이 포함**되었으면 해
 
 ## yaml frontmatter 예시
 

@@ -1,7 +1,7 @@
 ---
 argument-hint: "[url]"
 description: "기술 문서 URL을 입력받아 번역, 정리해서 obsidian 문서 로 저장"
-allowed-tools: browsermcp
+allowed-tools: playwright
 color: yellow
 ---
 
@@ -12,7 +12,7 @@ color: yellow
 ## 작업 프로세스
 
 1. $ARGUMENTS 로 전달된 url의 문서를 broswermcp tool로 읽어서
-   a. url에 접근할 때는 반드시 browsermcp tool을 사용해
+   a. url에 접근할 때는 반드시 playwright tool을 사용해
    b. 로그인 등이 필요한 경우 fetch tool을 사용하면 url에 접근이 안될 수 있어
 2. 아래 규칙(`## 문서 번역 및 요약 규칙조`)에 따라 내용을 정리해서 yaml frontmatter를 포함한 obsidian file로
    저장

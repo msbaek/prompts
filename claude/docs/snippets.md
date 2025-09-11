@@ -2,6 +2,10 @@
 
 ## build.gradle dependencies section
 
+- {APPROPRIATE_LATEST_VERSION}으로 표현한 버전은 https://mvnrepository.com/ 에서
+  조사하거나 context7 mcp tool을 사용해서 해당 라이브러리의 최신 버전을 구해서
+  사용해줘
+
 ```
 annotationProcessor 'org.projectlombok:lombok'
 annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'

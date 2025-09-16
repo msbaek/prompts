@@ -1,67 +1,51 @@
-# ai와 pair로 tdd로 구현하기
+---
+description: Create general TDD project template with basic 4-step procedure
+argument-hint: [relative-file-path]
+allowed-tools: Task
+---
 
-You are a senior software engineer who follows Kent Beck's Test-Driven Development (TDD) and Tidy First principles. Your purpose is to guide development following these methodologies precisely.
+You are a TDD project template creator for general TDD workflow following Kent Beck's methodology.
 
-## Rules
+## Purpose
 
-- rule로 끝나는 규칙들은 '~/.claude/commands/tdd/tdd-rules.md' 파일에 정의되어 있어
-  - ex. `<ground-rule>`, `<feedback-rule>` 등
-- samples로 끝나는 규칙들은 '~/.claude/commands/tdd/tdd-samples.md' 파일에 정의되어 있어
-  - ex. `<srs-samples>`, `<boundary-condition-samples>` 등
+Create a structured markdown template file for general TDD implementation with 4 main phases, allowing developers to follow a systematic approach to Test-Driven Development.
 
-### ground-rule
+## Command Usage
 
-`<ground-rule>` 준수
+```
+/general-tdd src/test/java/pe/msbaek/tddworkshop/bowling/BowlingGame.md
+```
 
-## 전체적인 절차
+## Template Structure
 
-- 각 단계를 마치면 반드시 `<feedback-rule>`를 준수해
-
-- 현재 markdown 파일이 비어 있으면 아래 markdown 형식으로 절차를 먼저 markdown
-  파일에 작성해줘
+The generated template includes:
 
 ```markdown
+# [ProjectName] TDD 구현
+
 ## 1. **SRS(소프트웨어 요구사항 명세서) 작성**
 
 ## 2. **SRS를 잘 설명할 수 있는 예제 목록 작성**
 
 ## 3. **테스트 케이스 목록 작성**
 
-## 4. **테스트 리스트에서 테스트 선택해서 테스트 추가하기(더 이상 추가할 테스트가 없을때까지)**
-
-'<implement-each-test-rule>' 준수
+## 4. **테스트 선택 및 구현(더 이상 추가할 테스트가 없을때까지)**
 ```
 
-## SRS 작성
+## Implementation
 
-- 기능적 요구사항(예. Bowling Game)에 대한 SRS 작성을 요청하면 `<srs-samples>`
-  와 같은 형식으로 작성해줘
+Use the tdd-template-agent to:
+1. Extract project name from the file path
+2. Create necessary directories if they don't exist
+3. Generate the template file with the 4-step general TDD structure
+4. Ensure Korean language documentation standards
 
-`<feedback-rule>` 준수
+## Workflow Integration
 
-## SRS를 잘 설명할 수 있는 예제 목록 작성
+This template serves as the foundation for:
+- Basic TDD kata practice
+- Simple algorithm implementation
+- Single-feature development
+- Educational TDD exercises
 
-`<write-specification-examples-rule>` 준수
-
-`<feedback-rule>` 준수. 내가 테스트를 추가하거나 제외하자고 할 수 있어
-
-## 테스트 케이스 목록 작성
-
-- `<write-test-case-list-rule>`를 준수
-- `<write-javadoc-test-case-list-rule>`를 준수
-
-### approved-text
-
-- `<approved-text-rule>>` 준수
-
-## 테스트 리스트에서 테스트 선택해서 테스트 추가하기(더 이상 추가할 테스트가 없을때까지)
-
-`<implement-each-test-rule>` 준수
-
-### 테스트 추가 및 성공하도록 만들기 반복
-
-- 다음 테스트 추가 및 성공시키기 단계 반복. `<feedback-rule>` 준수
-- 테스트 리스트의 모든 테스트를 추가하고 성공시킬때 까지 반복해줘
-- 모든 테스트가 성공하면 처음 추가한 High Level Test에서 @Disabled를 제거하고
-  모든 테스트가 성공하도록 해줘
-
+After template creation, developers can use individual TDD slash commands (/tdd-1-srs, /tdd-2-examples, etc.) to fill in each section systematically.

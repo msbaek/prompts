@@ -33,9 +33,24 @@ The generated template includes:
 
 ## 4. **테스트 케이스 목록 작성**
 
+가장 단순한 특수 케이스(degenerate)에서 일반적인 케이스(general)로 진행하는 테스트 리스트:
+
+- [ ] [첫 번째 테스트 - 보통 degenerate case]
+- [ ] [두 번째 테스트 - 단순 case]
+- [ ] [세 번째 테스트 - 일반적인 case]
+- [ ] [네 번째 테스트 - 복잡한 case]
+
 ## 5. **Walking Skeleton 구현**
 
 ## 6. **테스트 리스트에서 테스트 선택해서 테스트 추가하기(더 이상 추가할 테스트가 없을때까지)**
+
+### TDD 사이클 진행 방법:
+1. **Red**: `tdd-red-agent` 사용 - 다음 체크되지 않은 테스트 구현
+2. **Green**: `tdd-green-agent` 사용 - 최소 구현으로 테스트 통과
+3. **Blue**: `tdd-blue-agent` 사용 - 코드 정리 및 리팩토링
+
+### 진행 내역
+[Red-Green-Blue 사이클을 진행하면서 각 테스트의 구현 내역을 간단히 기록]
 
 ## 7. **High Level Test 활성화**
 

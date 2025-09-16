@@ -48,10 +48,32 @@ Agent receives:
 - Creates directories if needed
 - Generates template file with appropriate structure
 
+## Template Features
+
+### Checklist Integration
+- Test case lists include checkboxes: `- [ ]` for uncompleted items
+- Completed items marked as: `- [x]` by TDD agents during implementation
+- Progress tracking through checkbox status
+
+### Agent Integration Instructions
+Each template includes instructions for seamless TDD agent workflow:
+- **tdd-red-agent**: Reads template to find next unchecked test case
+- **tdd-green-agent**: References SRS and examples for implementation guidance
+- **tdd-blue-agent**: Updates document with refactoring progress
+
 ## File Creation Rules
 
 - Create any missing directories in the path
 - Use provided filename exactly as specified
 - Include appropriate Korean headings and structure
 - Leave content sections empty for user to fill
+- Add checkbox format to test case lists: `- [ ]`
 - Follow markdown formatting standards
+
+## Document Workflow Integration
+
+Templates serve as living documents that:
+1. **Guide next steps** - Agents read document to determine what to do next
+2. **Track progress** - Checkbox completion shows implementation status
+3. **Record decisions** - Brief implementation notes added by agents
+4. **Maintain context** - All project information in one place

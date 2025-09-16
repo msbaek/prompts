@@ -7,11 +7,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This repository contains no build system, but operates through prompt templates and configuration sync:
 
 ```bash
+# Manual sync to ~/.claude directory
+./to-claude.sh
+
 # Git post-commit hook automatically syncs slash commands to ~/.claude
 git commit -m "Updated prompts"
 
 # Check project structure
 tree -d -L 3
+
+# View available slash commands
+ls claude/commands/
+
+# View available agents
+ls claude/agents/
 ```
 
 ## Extension Development Guidelines
@@ -53,9 +62,25 @@ This repository is a comprehensive prompt engineering workspace for AI-assisted 
 - **spring-expert.md**: Spring ecosystem development
 - **vibe-coding-coach.md**: Conversational application building
 - **code-refactorer.md**: Code improvement without functionality changes
+- **code-review-expert.md**: Code quality and review guidance
+- **refactoring-expert.md**: Systematic code improvement techniques
+- **oop-expert.md**: Object-oriented programming expertise
+- **zettelkasten-expert.md**: Knowledge management and note organization
+- **technical-researcher.md**: Research and analysis of technical topics
+
+#### Slash Commands Organization
+
+- **obsidian/**: Obsidian vault management and Zettelkasten workflows
+- **tdd/**: Test-Driven Development specific commands and workflows
+- **tdp/**: Test-Driven development Patterns
+- **project-overview.md**: Project analysis and documentation
+- **coffee-time.md**: Team discussion note templates
+- **commit.md**: Git commit assistance
+- **check-security.md**: Security analysis tools
 
 #### Development Workflow Integration
 
+- Manual sync with `./to-claude.sh` script
 - Git post-commit hooks automatically sync prompts to `~/.claude/`
 - Supports IntelliJ IDEA workflow with open file context
 - Korean language support for documentation and communication

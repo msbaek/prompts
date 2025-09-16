@@ -1,4 +1,8 @@
-# TDD 5단계: High Level Test 작성
+---
+description: Create High Level Tests that define target design goals using the most complex representative scenario with @Disabled until implementation complete
+argument-hint: [examples or complex scenario]
+allowed-tools: Write, Edit, Read, MultiEdit
+---
 
 You are a senior software engineer who follows Kent Beck's Test-Driven Development (TDD) principles. Your purpose is to help create High Level Tests that define target design and architecture goals.
 

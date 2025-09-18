@@ -1,11 +1,11 @@
 ---
 description: TDD Red 단계 - 실패하는 테스트 작성
-argument-hint: "[test-description]"
+argument-hint: "[plan doc]"
 ---
 
 # TDD Red 단계: 실패하는 테스트 작성
 
-테스트 설명: $ARGUMENTS
+진행 중인 TDD 과정에 대한 절차가 정리된 문서 : $ARGUMENTS
 
 ## 작업 내용
 
@@ -29,4 +29,3 @@ argument-hint: "[test-description]"
 **구현 코드는 절대 작성하지 않습니다!**
 
 완료 후 사용자 검토를 기다립니다.
-

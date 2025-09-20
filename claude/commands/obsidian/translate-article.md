@@ -63,6 +63,15 @@ Translation requirements:
 3. Prioritize literal translation over free translation, but use natural Korean expressions.
 4. Use technical terminology and include code examples or diagrams when necessary.
 5. Explicitly mark any uncertain parts.
+6. **CRITICAL: Preserve all original document structure and formatting exactly:**
+   - Maintain all heading levels (# ## ### #### etc.) exactly as in the original
+   - Keep all bullet points (- or *) as bullet points with same indentation
+   - Keep all numbered lists (1. 2. 3.) as numbered lists
+   - Preserve all indentation levels and nested structures
+   - Maintain all bold (**text**) and italic (*text*) formatting
+   - Keep all code blocks (```code```) and inline code (`code`) unchanged
+   - Preserve all links, images, and other markdown elements
+   - Do NOT convert lists to paragraphs or change formatting structure
 
 Maintain the structure of the original article, but provide a summary of the content of the entire article at the beginning of the article.
 
@@ -70,7 +79,15 @@ Document structure:
 
 ## 1. Highlights/Summary: Summarize the entire content in 2-3 paragraphs.
 
-## A translation of the entire document with the same structure as the original. Never summarize.
+## 2. Complete translation with EXACT structure preservation:
+- Translate the entire document maintaining EXACTLY the same structure as the original
+- Every heading, subheading, bullet point, numbered list must be preserved
+- If the original has nested lists, maintain the same nesting levels
+- If the original uses bullet points, do NOT convert to numbered lists or paragraphs
+- If the original uses numbered lists, do NOT convert to bullet points or paragraphs
+- Preserve all formatting: bold, italic, code, links, images
+- Never summarize or reorganize the content structure
+- The structure should be an exact mirror of the original in Korean
 
 Important considerations:
 
@@ -86,4 +103,58 @@ Constraints:
 - If you don't know certain information, clearly state that you don't know.
 - Include all example codes in the document without omission.
 - Never summarize, but translate faithfully
+- **Structure preservation is MANDATORY:**
+  - Original structure violations are NOT acceptable
+  - Bullet points must remain bullet points
+  - Numbered lists must remain numbered lists
+  - Heading hierarchy must be preserved exactly
+  - Indentation and nesting levels must match the original
+  - Do NOT reorganize content even if it seems logical to do so
+
+## Structure Preservation Examples
+
+### ✅ CORRECT Translation Example
+
+**Original:**
+```
+## Best Practices for AI Development
+
+### Session Setup
+- Load your development instructions first
+- Create detailed requirements document
+- Break down into actionable tasks
+
+### Development Guidelines
+1. Don't trust AI blindly
+2. Accept changes strategically
+3. Know when to start fresh
+```
+
+**Correct Translation:**
+```
+## AI 개발을 위한 모범 사례
+
+### 세션 설정
+- 개발 지시사항을 먼저 로드하세요
+- 상세한 요구사항 문서를 작성하세요
+- 실행 가능한 작업으로 세분화하세요
+
+### 개발 가이드라인
+1. AI를 맹신하지 마세요
+2. 변경사항을 전략적으로 수용하세요
+3. 언제 새로 시작할지 파악하세요
+```
+
+### ❌ INCORRECT Translation Example
+
+**Wrong (converts lists to paragraphs):**
+```
+## AI 개발을 위한 모범 사례
+
+### 세션 설정
+개발 지시사항을 먼저 로드해야 합니다. 상세한 요구사항 문서를 작성하고, 실행 가능한 작업으로 세분화합니다.
+
+### 개발 가이드라인
+AI를 맹신하지 말아야 하며, 변경사항을 전략적으로 수용하고, 언제 새로 시작할지 파악해야 합니다.
+```
 ```

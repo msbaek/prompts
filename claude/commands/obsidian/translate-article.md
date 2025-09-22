@@ -11,9 +11,11 @@ color: yellow
 
 ## 작업 프로세스
 
-1. $ARGUMENTS 로 전달된 url의 문서를 playwright tool로 읽어서
-   a. url에 접근할 때는 반드시 playwright tool을 사용해
-   b. 로그인 등이 필요한 경우 fetch tool을 사용하면 url에 접근이 안될 수 있어
+1. $ARGUMENTS 로 전달된 url의 문서를 **반드시 playwright tool로만** 읽어서
+   a. **CRITICAL: url에 접근할 때는 절대로 playwright tool만 사용해**
+   b. **절대 WebFetch, fetch tool, 또는 다른 웹 접근 도구를 사용하지 마**
+   c. 로그인이 필요하거나 접근 제한이 있는 경우에도 playwright tool을 사용해
+   d. playwright tool이 실패하면 다른 도구로 시도하지 말고 에러를 보고해
 2. 아래 규칙(`## 문서 번역 규칙`)에 따라 내용을 정리해서 yaml frontmatter를 포함한 obsidian file로 저장
 3. hierarchical tagging 규칙은 `~/.claude/commands/obsidian/add-tag.md` 에 정의된 규칙을 준수
 4. 문서에 존재하는 이미지를 ATTACHMENTS 폴더에 저장하고, 이번에 작성하는 옵시디언 문서에 포함시켜줘. **이미지는 하나도 누락 없이 포함**되었으면 해
@@ -58,8 +60,12 @@ Here is the technical document to be translated and summarized: <technical_docum
 Translation requirements:
 
 1. Translate the input text into Korean.
-2. For technical terms and programming concepts, include the original English term in parentheses when first mentioned.
-   - Include as many original terms as possible.
+2. **MANDATORY: Include original English terms in parentheses for ALL titles, headings, and key terms:**
+   - **Titles and headings**: Always include original after Korean translation: "번역된 제목 (Original Title)"
+   - **All levels of headings** (# ## ### ####): Must include original English in parentheses
+   - **Technical terms and programming concepts**: Include original English term in parentheses when first mentioned
+   - **Key business/domain terms**: Include original terms for important concepts
+   - Include as many original terms as possible to aid understanding
 3. Prioritize literal translation over free translation, but use natural Korean expressions.
 4. Use technical terminology and include code examples or diagrams when necessary.
 5. Explicitly mark any uncertain parts.
@@ -110,6 +116,16 @@ Constraints:
   - Heading hierarchy must be preserved exactly
   - Indentation and nesting levels must match the original
   - Do NOT reorganize content even if it seems logical to do so
+- **Original term inclusion is MANDATORY:**
+  - ALL titles and headings must include original English in parentheses
+  - Key terms must include original English when first mentioned
+  - This helps Korean readers understand and reference original sources
+  - Do NOT skip original terms even if they seem obvious
+- **Web access tool restriction is ABSOLUTE:**
+  - ONLY use playwright tool for web content access
+  - NEVER use WebFetch, fetch, or any other web access tools
+  - If playwright fails, report the error - do NOT try alternative tools
+  - This command specifically requires playwright tool only
 
 ## Structure Preservation Examples
 
@@ -130,24 +146,24 @@ Constraints:
 3. Know when to start fresh
 ```
 
-**Correct Translation:**
+**Correct Translation (with original terms in parentheses):**
 ```
-## AI 개발을 위한 모범 사례
+## AI 개발을 위한 모범 사례 (Best Practices for AI Development)
 
-### 세션 설정
-- 개발 지시사항을 먼저 로드하세요
-- 상세한 요구사항 문서를 작성하세요
-- 실행 가능한 작업으로 세분화하세요
+### 세션 설정 (Session Setup)
+- 개발 지시사항 (Development Instructions)을 먼저 로드하세요
+- 상세한 요구사항 문서 (Requirements Document)를 작성하세요
+- 실행 가능한 작업 (Actionable Tasks)으로 세분화하세요
 
-### 개발 가이드라인
-1. AI를 맹신하지 마세요
-2. 변경사항을 전략적으로 수용하세요
-3. 언제 새로 시작할지 파악하세요
+### 개발 가이드라인 (Development Guidelines)
+1. AI를 맹신하지 마세요 (Don't trust AI blindly)
+2. 변경사항을 전략적으로 수용하세요 (Accept changes strategically)
+3. 언제 새로 시작할지 파악하세요 (Know when to start fresh)
 ```
 
-### ❌ INCORRECT Translation Example
+### ❌ INCORRECT Translation Examples
 
-**Wrong (converts lists to paragraphs):**
+**Wrong 1 (converts lists to paragraphs):**
 ```
 ## AI 개발을 위한 모범 사례
 
@@ -157,4 +173,73 @@ Constraints:
 ### 개발 가이드라인
 AI를 맹신하지 말아야 하며, 변경사항을 전략적으로 수용하고, 언제 새로 시작할지 파악해야 합니다.
 ```
+
+**Wrong 2 (missing original terms in titles and headings):**
 ```
+## AI 개발을 위한 모범 사례
+
+### 세션 설정
+- 개발 지시사항을 먼저 로드하세요
+- 상세한 요구사항 문서를 작성하세요
+- 실행 가능한 작업으로 세분화하세요
+```
+
+**Wrong 3 (missing original terms for key concepts):**
+```
+## AI 개발을 위한 모범 사례 (Best Practices for AI Development)
+
+### 세션 설정 (Session Setup)
+- 개발 지시사항을 먼저 로드하세요
+- 상세한 요구사항 문서를 작성하세요
+- 실행 가능한 작업으로 세분화하세요
+```
+
+## Playwright Tool Usage Guidelines
+
+### ✅ CORRECT Tool Usage
+
+**Step 1: Always use playwright tool first**
+```
+# Correct approach
+Use playwright tool to access: https://example.com/article
+
+# Wait for full page load
+# Extract all content including text, images, and structure
+# Get the complete article content
+```
+
+**Step 2: Never use alternative web tools**
+```
+# These are FORBIDDEN in this command:
+❌ WebFetch tool
+❌ fetch tool
+❌ requests
+❌ curl
+❌ Any other web access method
+```
+
+### ❌ INCORRECT Tool Usage
+
+**Wrong: Using WebFetch or other tools**
+```
+# This is WRONG - never do this:
+WebFetch(url="https://example.com/article", prompt="Extract content")
+
+# This is also WRONG:
+"Let me try WebFetch since playwright failed"
+```
+
+**Wrong: Fallback to other tools**
+```
+# This is WRONG - no fallbacks allowed:
+"playwright failed, let me try WebFetch instead"
+"Let me use a different approach to access the URL"
+```
+
+### Playwright Tool Benefits for This Task
+
+- **Complete content extraction**: Gets full HTML structure needed for translation
+- **Handles JavaScript**: Many modern sites require JS execution
+- **Better image handling**: Can access all images for ATTACHMENTS folder
+- **Login support**: Can handle authentication if needed
+- **Consistent results**: Reliable content extraction for translation

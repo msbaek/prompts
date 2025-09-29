@@ -1,6 +1,6 @@
 ---
-argument-hint: "[transcript or YouTube URL]"
-description: "Youtube URL 또는 트랜스크립트를 입력받아 번역, 정리해서 obsidian 문서로 저장"
+argument-hint: "[transcript or YouTube URL] [kr]"
+description: "Youtube URL 또는 트랜스크립트를 입력받아 번역, 정리해서 obsidian 문서로 저장 (기본: 영어, kr 옵션으로 한글 처리)"
 color: yellow
 ---
 
@@ -8,37 +8,63 @@ color: yellow
 
 제공되는 YouTube URL 또는 트랜스크립트를 번역/정리해서 obsidian 문서를 생성합니다.
 
+## 언어 옵션 처리
+
+```bash
+# 언어 옵션 확인 (기본값: en)
+LANG_OPTION="en"
+CLEANED_ARGUMENTS="$ARGUMENTS"
+
+if [[ "$ARGUMENTS" == *" kr"* ]] || [[ "$ARGUMENTS" == *" kr "* ]] || [[ "$ARGUMENTS" == "kr "* ]]; then
+    LANG_OPTION="kr"
+    # kr 옵션 제거
+    CLEANED_ARGUMENTS=$(echo "$ARGUMENTS" | sed 's/ kr$//g' | sed 's/ kr / /g' | sed 's/^kr //g')
+fi
+
+echo "언어 옵션: $LANG_OPTION"
+echo "처리할 내용: $CLEANED_ARGUMENTS"
+```
+
 먼저 입력 데이터 타입을 확인하겠습니다:
 
 ```bash
 # YouTube URL 패턴 확인
-if [[ "$ARGUMENTS" == *"youtube.com/watch?v="* ]] || [[ "$ARGUMENTS" == *"youtu.be/"* ]]; then
+if [[ "$CLEANED_ARGUMENTS" == *"youtube.com/watch?v="* ]] || [[ "$CLEANED_ARGUMENTS" == *"youtu.be/"* ]]; then
     echo "YouTube URL이 감지되었습니다. 메타데이터와 트랜스크립트를 다운로드합니다."
-    
-    # yt 명령어로 JSON 형식 데이터 추출
+
+    # yt 명령어로 JSON 형식 데이터 추출 (언어 옵션 적용)
     cd ~/git/lib/download-youtube-transcript
-    YOUTUBE_DATA=$(yt "$ARGUMENTS" -f json -l ko 2>/dev/null || yt "$ARGUMENTS" -f json -l en)
-    
+    if [ "$LANG_OPTION" = "kr" ]; then
+        echo "한글 트랜스크립트로 다운로드 시도"
+        YOUTUBE_DATA=$(yt "$CLEANED_ARGUMENTS" -f json -l kr 2>/dev/null || yt "$CLEANED_ARGUMENTS" -f json -l ko 2>/dev/null || yt "$CLEANED_ARGUMENTS" -f json -l en)
+    else
+        echo "영어 트랜스크립트로 다운로드 시도"
+        YOUTUBE_DATA=$(yt "$CLEANED_ARGUMENTS" -f json -l en 2>/dev/null || yt "$CLEANED_ARGUMENTS" -f json -l kr 2>/dev/null || yt "$CLEANED_ARGUMENTS" -f json -l ko)
+    fi
+
     if [ $? -eq 0 ]; then
         echo "YouTube 데이터 추출 완료."
         echo "$YOUTUBE_DATA" > /tmp/youtube_data.json
     else
         echo "YouTube 데이터 추출 실패. 트랜스크립트로 처리합니다."
-        TRANSCRIPT="$ARGUMENTS"
+        TRANSCRIPT="$CLEANED_ARGUMENTS"
     fi
 else
     echo "트랜스크립트 데이터로 처리합니다."
-    TRANSCRIPT="$ARGUMENTS"
+    TRANSCRIPT="$CLEANED_ARGUMENTS"
 fi
 ```
 
 ## 작업 프로세스
 
 1. **입력 데이터 분석 및 처리**
-   - $ARGUMENTS가 YouTube URL인지 확인 (youtube.com/watch?v=, youtu.be/ 패턴)
+   - 언어 옵션 파싱: `kr` 옵션이 있으면 한글 우선, 없으면 영어 우선 (기본값)
+   - $ARGUMENTS에서 언어 옵션을 제거한 후 실제 내용만 추출
+   - 정제된 내용이 YouTube URL인지 확인 (youtube.com/watch?v=, youtu.be/ 패턴)
    - URL인 경우:
      - `~/git/lib/download-youtube-transcript`의 `yt` 명령어를 사용하여 JSON 형식으로 메타데이터와 트랜스크립트 추출
-     - `yt "$URL" -f json`로 실행하여 제목, 채널, 업로드 날짜 등의 메타데이터 확보
+     - 언어 옵션에 따라 `-l kr` (한글 우선) 또는 `-l en` (영어 우선)으로 실행
+     - 첫 번째 언어 실패 시 대체 언어로 재시도
    - 트랜스크립트인 경우: 기존 방식대로 직접 처리
 
 2. **메타데이터 자동 생성** (URL인 경우)

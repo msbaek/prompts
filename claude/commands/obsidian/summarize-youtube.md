@@ -1,6 +1,6 @@
 ---
-argument-hint: "[transcript or YouTube URL] [kr]"
-description: "Youtube URL 또는 트랜스크립트를 입력받아 번역, 정리해서 obsidian 문서로 저장 (기본: 영어, kr 옵션으로 한글 처리)"
+argument-hint: "[kr|en] [transcript or YouTube URL]"
+description: "Youtube URL 또는 트랜스크립트를 입력받아 번역, 정리해서 obsidian 문서로 저장 (첫 번째 인자로 언어 지정: kr|en, 기본값: en)"
 color: yellow
 ---
 
@@ -11,14 +11,24 @@ color: yellow
 ## 언어 옵션 처리
 
 ```bash
-# 언어 옵션 확인 (기본값: en)
+# 첫 번째 인자로 언어 옵션 확인 (기본값: en)
 LANG_OPTION="en"
 CLEANED_ARGUMENTS="$ARGUMENTS"
 
-if [[ "$ARGUMENTS" == *" kr"* ]] || [[ "$ARGUMENTS" == *" kr "* ]] || [[ "$ARGUMENTS" == "kr "* ]]; then
+# 첫 번째 단어가 언어 옵션인지 확인
+FIRST_WORD=$(echo "$ARGUMENTS" | awk '{print $1}')
+REST_ARGUMENTS=$(echo "$ARGUMENTS" | sed 's/^[^ ]* *//')
+
+if [[ "$FIRST_WORD" == "kr" ]] || [[ "$FIRST_WORD" == "ko" ]]; then
     LANG_OPTION="kr"
-    # kr 옵션 제거
-    CLEANED_ARGUMENTS=$(echo "$ARGUMENTS" | sed 's/ kr$//g' | sed 's/ kr / /g' | sed 's/^kr //g')
+    CLEANED_ARGUMENTS="$REST_ARGUMENTS"
+elif [[ "$FIRST_WORD" == "en" ]]; then
+    LANG_OPTION="en"
+    CLEANED_ARGUMENTS="$REST_ARGUMENTS"
+else
+    # 첫 번째 단어가 언어 옵션이 아니면 전체를 내용으로 처리 (기본 영어)
+    LANG_OPTION="en"
+    CLEANED_ARGUMENTS="$ARGUMENTS"
 fi
 
 echo "언어 옵션: $LANG_OPTION"
@@ -58,8 +68,8 @@ fi
 ## 작업 프로세스
 
 1. **입력 데이터 분석 및 처리**
-   - 언어 옵션 파싱: `kr` 옵션이 있으면 한글 우선, 없으면 영어 우선 (기본값)
-   - $ARGUMENTS에서 언어 옵션을 제거한 후 실제 내용만 추출
+   - 첫 번째 인자로 언어 옵션 파싱: `kr`/`ko`/`en` 중 하나, 없으면 영어 우선 (기본값)
+   - 첫 번째 단어가 언어 옵션이면 제거하고 나머지를 실제 내용으로 처리
    - 정제된 내용이 YouTube URL인지 확인 (youtube.com/watch?v=, youtu.be/ 패턴)
    - URL인 경우:
      - `~/git/lib/download-youtube-transcript`의 `yt` 명령어를 사용하여 JSON 형식으로 메타데이터와 트랜스크립트 추출

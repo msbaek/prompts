@@ -42,17 +42,17 @@ echo "처리할 내용: $CLEANED_ARGUMENTS"
 if [[ "$CLEANED_ARGUMENTS" == *"youtube.com/watch?v="* ]] || [[ "$CLEANED_ARGUMENTS" == *"youtu.be/"* ]]; then
     echo "YouTube URL이 감지되었습니다. 메타데이터와 트랜스크립트를 다운로드합니다."
 
-    # yt 명령어로 JSON 형식 데이터 추출 (언어 옵션 적용)
+    # Python 스크립트로 JSON 형식 데이터 추출 (언어 옵션 적용)
     cd ~/git/lib/download-youtube-transcript
     if [ "$LANG_OPTION" = "kr" ]; then
         echo "한글 트랜스크립트로 다운로드 시도"
-        YOUTUBE_DATA=$(yt "$CLEANED_ARGUMENTS" -f json -l kr 2>/dev/null || yt "$CLEANED_ARGUMENTS" -f json -l ko 2>/dev/null || yt "$CLEANED_ARGUMENTS" -f json -l en)
+        YOUTUBE_DATA=$(python script.py -l kr "$CLEANED_ARGUMENTS" 2>/dev/null || python script.py -l en "$CLEANED_ARGUMENTS")
     else
         echo "영어 트랜스크립트로 다운로드 시도"
-        YOUTUBE_DATA=$(yt "$CLEANED_ARGUMENTS" -f json -l en 2>/dev/null || yt "$CLEANED_ARGUMENTS" -f json -l kr 2>/dev/null || yt "$CLEANED_ARGUMENTS" -f json -l ko)
+        YOUTUBE_DATA=$(python script.py -l en "$CLEANED_ARGUMENTS" 2>/dev/null || python script.py -l kr "$CLEANED_ARGUMENTS")
     fi
 
-    if [ $? -eq 0 ]; then
+    if [ $? -eq 0 ] && [ -n "$YOUTUBE_DATA" ]; then
         echo "YouTube 데이터 추출 완료."
         echo "$YOUTUBE_DATA" > /tmp/youtube_data.json
     else
@@ -72,8 +72,8 @@ fi
    - 첫 번째 단어가 언어 옵션이면 제거하고 나머지를 실제 내용으로 처리
    - 정제된 내용이 YouTube URL인지 확인 (youtube.com/watch?v=, youtu.be/ 패턴)
    - URL인 경우:
-     - `~/git/lib/download-youtube-transcript`의 `yt` 명령어를 사용하여 JSON 형식으로 메타데이터와 트랜스크립트 추출
-     - 언어 옵션에 따라 `-l kr` (한글 우선) 또는 `-l en` (영어 우선)으로 실행
+     - `~/git/lib/download-youtube-transcript`의 `python script.py` 명령어를 사용하여 JSON 형식으로 메타데이터와 트랜스크립트 추출
+     - 언어 옵션에 따라 `-l kr` (한글 우선) 또는 `-l en` (영어 우선, 기본값)으로 실행
      - 첫 번째 언어 실패 시 대체 언어로 재시도
    - 트랜스크립트인 경우: 기존 방식대로 직접 처리
 

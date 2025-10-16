@@ -11,7 +11,7 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
 
 ## 작업 프로세스
 
-1. tag를 부여하는 것은 .claude/commands/obsidian/add-tag.md 파일을 참고해서 진행하세요.
+1. tag를 부여하는 것은 ~/.claude/commands/obsidian/add-tag.md 파일을 참고해서 진행하세요.
 2. **적절한 디렉토리 결정**
    - vault의 폴더 구조 분석
    - 파일 내용에 가장 적합한 디렉토리 선택

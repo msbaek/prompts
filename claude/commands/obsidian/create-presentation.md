@@ -271,50 +271,55 @@ A: 준비된 답변
 ## 건축 공학 <!-- element style="font-size: 48pt" -->
 ```
 
-**3. 주요 bullet points:**
+**3. 본문은 반드시 bullet point(`-`) 사용:**
 ```markdown
-• 설계와 빌드가 분리됨 <!-- element style="font-size: 42pt" -->
+- 설계와 빌드가 분리됨 <!-- element style="font-size: 42pt" -->
 ```
 
-**4. 하위 bullet points:**
+**4. 하위 bullet points (들여쓰기로 계층 표현):**
 ```markdown
-  • 시작과 종료 존재 <!-- element style="font-size: 36pt" -->
-    • 실패한 SW만 종료 존재 <!-- element style="font-size: 30pt" -->
+- 시작과 종료 존재 <!-- element style="font-size: 36pt" -->
+  - 실패한 SW만 종료 존재 <!-- element style="font-size: 30pt" -->
 ```
 
 **5. 일반 텍스트:**
 - 기본 크기 (24-28pt)
 
+**⚠️ 중요: 본문 작성 규칙**
+- **#으로 시작하는 라인**: 제목/섹션 헤더만 사용 (##, ###)
+- **본문 내용**: 모두 `-` bullet point로 작성
+- **계층 구조**: 들여쓰기로 표현 (2칸 단위)
+
 ### 강조 표현
 
 **1. 굵게 표시 (중요 개념):**
 ```markdown
-• **빌드 비용**이 비쌈(건축 90%)
+- **빌드 비용**이 비쌈(건축 90%)
 ```
 
 **2. 색상 강조 (핵심 키워드):**
 ```markdown
-• Refactoring: 동작하는 코드를 가지고 **설계**하는 것 <!-- element style="color: red" -->
+- Refactoring: 동작하는 코드를 가지고 **설계**하는 것 <!-- element style="color: red" -->
 ```
 
 **3. 조합 (크기 + 굵게 + 색상):**
 ```markdown
-• **실패한 SW만** 종료 존재 <!-- element style="font-size: 30pt; color: red" -->
+- **실패한 SW만** 종료 존재 <!-- element style="font-size: 30pt; color: red" -->
 ```
 
 ### 계층적 구조
 
-**들여쓰기 규칙:**
+**들여쓰기 규칙 (반드시 `-` 사용):**
 ```markdown
-• 레벨 1 (48pt)
-  • 레벨 2 (42pt)
-    • 레벨 3 (36pt)
-      • 레벨 4 (30pt)
+- 레벨 1 (48pt)
+  - 레벨 2 (42pt)
+    - 레벨 3 (36pt)
+      - 레벨 4 (30pt)
 ```
 
 **화살표 표현:**
 ```markdown
-• 기초 다지기 → 벽 세우기 → 지붕 올리기
+- 기초 다지기 → 벽 세우기 → 지붕 올리기
 ```
 
 ## 출력 파일 구조 예시
@@ -362,12 +367,12 @@ note:
 
 ## 건축 공학 <!-- element style="font-size: 48pt" -->
 
-• **설계와 빌드가 분리됨** <!-- element style="font-size: 42pt" -->
-  • 설계는 건축가, 건축은 건설사
+- **설계와 빌드가 분리됨** <!-- element style="font-size: 42pt" -->
+  - 설계는 건축가, 건축은 건설사
 
-• **빌드 비용**이 비쌈(건축 90%) <!-- element style="font-size: 42pt" -->
+- **빌드 비용**이 비쌈(건축 90%) <!-- element style="font-size: 42pt" -->
 
-• **유지보수 비용**이 상대적으로 낮음 <!-- element style="font-size: 42pt" -->
+- **유지보수 비용**이 상대적으로 낮음 <!-- element style="font-size: 42pt" -->
 
 note:
 **⏱️ 예상 시간**: 2분 (누적: 6분 / 60분)
@@ -386,17 +391,17 @@ note:
 
 ## vs SW 공학 <!-- element style="font-size: 48pt" -->
 
-• **시작과 종료 존재** <!-- element style="font-size: 36pt" -->
-  • **실패한 SW만** 종료 존재 <!-- element style="font-size: 30pt; color: red" -->
+- **시작과 종료 존재** <!-- element style="font-size: 36pt" -->
+  - **실패한 SW만** 종료 존재 <!-- element style="font-size: 30pt; color: red" -->
 
-• **단계(Phase)의 문제**: 설계가 완료된 후에만 개발 가능 <!-- element style="font-size: 36pt" -->
-  • **Refactoring**: 동작하는 코드를 가지고 **설계**하는 것 <!-- element style="font-size: 30pt" -->
+- **단계(Phase)의 문제**: 설계가 완료된 후에만 개발 가능 <!-- element style="font-size: 36pt" -->
+  - **Refactoring**: 동작하는 코드를 가지고 **설계**하는 것 <!-- element style="font-size: 30pt" -->
 
-• **의존성** <!-- element style="font-size: 36pt" -->
-  • 기초 다지기 → 벽 세우기 → 지붕 올리기
-  • **SW는 지붕부터 시작 가능** <!-- element style="color: red" -->
+- **의존성** <!-- element style="font-size: 36pt" -->
+  - 기초 다지기 → 벽 세우기 → 지붕 올리기
+  - **SW는 지붕부터 시작 가능** <!-- element style="color: red" -->
 
-• **중간 결과 무의미** <!-- element style="font-size: 36pt" -->
+- **중간 결과 무의미** <!-- element style="font-size: 36pt" -->
 
 note:
 **⏱️ 예상 시간**: 2분 (누적: 8분 / 60분)
@@ -419,10 +424,10 @@ note:
 
 ### Refactoring의 의미 <!-- element style="font-size: 42pt" -->
 
-• **동작하는 코드를 가지고 설계하는 것**
+- **동작하는 코드를 가지고 설계하는 것**
 
-• 설계 → 코딩 (전통적 방식)
-• 코딩 → 설계 (Agile 방식)
+- 설계 → 코딩 (전통적 방식)
+- 코딩 → 설계 (Agile 방식)
 
 note:
 **⏱️ 예상 시간**: 2분 (누적: 10분 / 60분)
@@ -556,12 +561,12 @@ note:
 - 빨간색 (`<!-- element style="color: red" -->`): 가장 중요한 핵심 메시지
 - 크기 + 굵게 + 색상 조합: 최고 강조 포인트
 
-**계층 구조:**
+**계층 구조 (반드시 `-` 사용):**
 ```
-• 레벨 1 (48pt)
-  • 레벨 2 (42pt)
-    • 레벨 3 (36pt)
-      • 레벨 4 (30pt)
+- 레벨 1 (48pt)
+  - 레벨 2 (42pt)
+    - 레벨 3 (36pt)
+      - 레벨 4 (30pt)
 ```
 
 ### 2. 내용 작성 원칙
@@ -584,12 +589,18 @@ note:
 ```markdown
 ## 주요 섹션 <!-- element style="font-size: 48pt" -->
 
-• **핵심 포인트 1** <!-- element style="font-size: 42pt" -->
-  • 세부 사항 1 <!-- element style="font-size: 36pt" -->
-    • 더 상세한 내용 <!-- element style="font-size: 30pt" -->
+- **핵심 포인트 1** <!-- element style="font-size: 42pt" -->
+  - 세부 사항 1 <!-- element style="font-size: 36pt" -->
+    - 더 상세한 내용 <!-- element style="font-size: 30pt" -->
 
-• **가장 중요한 메시지** <!-- element style="font-size: 42pt; color: red" -->
+- **가장 중요한 메시지** <!-- element style="font-size: 42pt; color: red" -->
 ```
+
+**⚠️ 핵심 규칙:**
+- **제목/섹션**: `#`, `##`, `###` 사용
+- **본문 내용**: 반드시 `-` bullet point 사용
+- **계층**: 2칸 들여쓰기로 표현
+- **`•` 또는 숫자 리스트 사용 금지**: 모두 `-`로 통일
 
 ### 4. 강조 가이드라인
 
